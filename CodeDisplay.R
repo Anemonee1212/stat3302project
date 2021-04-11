@@ -100,6 +100,7 @@ data3b <- youth %>%
     base_year = ifelse(month(DOB) >= 9, year(DOB), year(DOB) - 1),
     base_date = ymd(paste(base_year, "/09/01", sep = "")),
     nweeks = ceiling(as.double(difftime(DOB, base_date, unit = "weeks"))),
+    wb = ifelse(nweeks == 53, nweeks - 1, nweeks),
     tb = (wb - 0.5) / 52
   ) %>%
   select(Idx, tb, ngames = `Games Played`)
